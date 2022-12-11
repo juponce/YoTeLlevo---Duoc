@@ -1,0 +1,26 @@
+
+:root{
+    --main-color: #002138;
+    --secondary-color: #f8b31c;
+    --black-color: #1e1e1e;
+
+}
+
+.main-button{
+    background-color: var(--main-color);
+    border-radius: 7px;
+}
+
+.secondary-button {
+    background-color: var(--secondary-color);
+    border-radius: 7px;
+}
+
+.black-font {
+    color: var(--black-color);
+}
+
+ion-button {
+
+    --background: #ffffff;
+}

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-end">
+      <ion-img src="../assets/img/LogoApp.png"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="auth-form">
+  <h4 class="ion-margin texto-centrado">Bienvenido a la primera aplicación de transporte de DuocUc.</h4>
+  
+  <ion-grid>
+    <ion-row class="ion-padding-top">
+      <ion-col size="12" align-self-center>
+        <span class="divider line one-line" class="c-padding-bottom margin-bottom ">Para crearte una cuenta y empezar a moverte haz click en el siguiente botón:</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding">
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/register']" expand="block" class="main-button" color="main-color">Registrarse</ion-button>
+        <span class="divider line one-line" class="margin-bottom">¿Ya tienes cuenta?</span>
+        <ion-button [routerLink]="['/login']" expand="block" color="secondary-color" class="secondary-button">Iniciar sesión</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding">
+      <ion-col size="12" align-self-center>
+        <ion-img src="./assets/img/Logo_DuocUC.svg.png"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

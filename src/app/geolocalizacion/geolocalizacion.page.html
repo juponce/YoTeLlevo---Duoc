@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+      <div *ngIf="type == 'conductor'" id="conductor">
+        
+      <h1 class="ion-text-center">Anuncia tu ruta</h1>
+    <ion-item>
+      <ion-input required="true" id="input-id" placeholder="Punto de llegada" [(ngModel)]="postR.final" [maxlength]="50" [minlength]="3"></ion-input>
+    </ion-item>
+    <ion-item>
+
+      <ion-select placeholder="Numero de Asientos" [(ngModel)]="postR.asientos">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+      </ion-select>
+
+
+
+
+
+    </ion-item>
+    <ion-item>
+      <ion-input required="true" id="input-id" placeholder="Precio" [(ngModel)]="postR.precio" [maxlength]="50" [minlength]="3"></ion-input>
+    </ion-item>
+      <ion-button (click)="PostearRuta()" type="submit" expand="block">Publicar</ion-button>
+
+      <ion-card *ngFor="let x of postRuta">
+          <ion-card-header>
+          <ion-card-title>{{ x.final }}</ion-card-title>
+            <ion-card-subtitle>Conductor:{{ x.autor }}<br>El {{ x.publicado }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            Punto de partida: {{ x.inicio }} <br>
+            Punto de llegada: {{ x.final }} <br>
+            Numero de asientos disponibles: {{ x.asientos }} <br>
+            Precio: ${{ x.precio }}
+          </ion-card-content>
+        
+        </ion-card>
+
+  </div>
+
+<!--Fin Conductor-->
+
+<!--Inicio pasajero-->
+
+      <div *ngIf="type == 'pasajero'" id="pasajero">
+
+        <ion-card *ngFor="let x of postRuta">
+          <ion-card-header>
+          <ion-card-title>{{ x.final }}</ion-card-title>
+            <ion-card-subtitle>Conductor:{{ x.autor }}<br>El {{ x.publicado }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            Punto de partida: {{ x.inicio }} <br>
+            Punto de llegada: {{ x.final }} <br>
+            Numero de asientos disponibles: {{ x.asientos }} <br>
+            Precio: {{ x.precio }}$
+          </ion-card-content>
+          <ion-grid fixed *ngIf="x.asientos == 0">
+            <ion-button type="submit" [disabled]="true">No hay asientos disponibles</ion-button>
+          </ion-grid>
+          <ion-grid fixed *ngIf="x.asientos != 0">
+            <ion-button type="submit" (click)="descontarAsiento(x)">Tomar asiento</ion-button>
+          </ion-grid>
+
+        </ion-card>
+
+      </div>
+
+
+      
+     <!-- <div id="map"></div> -->
+
+
+      
+</ion-content>
+

@@ -1,0 +1,37 @@
+.maincontent{
+  max-width: 250px;
+  height: 300px;
+  margin: auto;
+  align-items: center;
+  display:block;
+  justify-items: center;
+  text-align: center;
+}
+
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
+.marcoGato{
+  border-style: solid;
+  border-width:2px;
+  border-color: var(--secondary-color);
+  border-radius: 3px;
+}
+
+:root{
+  --main-color: #002138;
+  --secondary-color: #f8b31c;
+  --black-color: #1e1e1e;
+
+}
+
+.main-button{
+  background-color: var(--main-color);
+  border-radius: 7px;
+}
+
+.secondary-button {
+  background-color: var(--secondary-color);
+  border-radius: 7px;
+}

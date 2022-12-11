@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-padding-start">
+      <ion-col size="12"><h4>Nombre: <br>{{ name }}</h4></ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-start">
+      <ion-col size="12"><h4>Correo electronico: {{ email }}</h4></ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-start">
+      <ion-col size="12"><h4>Telefono: <br> +569 {{ tel }}</h4></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
