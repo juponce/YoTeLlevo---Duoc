@@ -43,7 +43,11 @@ const routes: Routes = [
     path: 'foro',
     loadChildren: () => import('./foro/foro.module').then( m => m.ForoPageModule),
     canActivate: [AngularFireAuthGuard]
+  },  {
+    path: 'viajes-pasajero',
+    loadChildren: () => import('./viajes-pasajero/viajes-pasajero.module').then( m => m.ViajesPasajeroPageModule)
   },
+
 
 
 

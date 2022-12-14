@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Historial</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+<!--Inicio pasajero-->
+
+      <div id="pasajero">
+
+        <ion-card *ngFor="let i of viajes">
+          <div *ngIf="i.pasajeroUid == userUid">
+          <ion-card-header>
+          <ion-card-title>{{ i.fecha }}</ion-card-title>
+            <ion-card-subtitle>Conductor:{{ i.conductor }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            Punto de partida: {{ i.inicio }} <br>
+            Punto de llegada: {{ i.final }} <br>
+            Precio: ${{ i.precio }}
+          </ion-card-content>
+          </div>
+        </ion-card>
+
+      </div>
+
+</ion-content>
+

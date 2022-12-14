@@ -25,3 +25,13 @@ export interface PostRuta {
     autor: string;
     publicado: string;
 }
+
+export interface ViajesPasajero {
+    uid: string;
+    pasajeroUid: string;
+    inicio: string;
+    final: string;
+    precio: number;
+    conductor: string;
+    fecha: string;
+}

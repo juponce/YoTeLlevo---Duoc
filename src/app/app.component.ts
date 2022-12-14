@@ -16,6 +16,7 @@ export class AppComponent {
 
   name: string = null;
   email: string = null;
+  type: string = null;
 
 
   public appPagesLogin = [
@@ -55,11 +56,11 @@ export class AppComponent {
     const path = 'Users';
     const id = uid;
     this.firestore.getDoc<UserTable>(path, id).subscribe( res => {
-      console.log('datos -> ', res);
       if (res) {
         this.name = res.name+' '+res.lastName;
         this.email = res.eMail;
-      }
+        this.type = res.type;
+      };
     });
 
   }

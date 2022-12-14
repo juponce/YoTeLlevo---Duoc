@@ -14,6 +14,13 @@
             </ion-item>
           </ion-menu-toggle>
 
+          <ion-menu-toggle auto-hide="false" *ngIf="type == 'pasajero'">
+            <ion-item routerDirection="root" routerLinkActive="selected" [routerLink]="['/viajes-pasajero']">
+              <ion-icon class="ion-padding-end" name="time-outline"></ion-icon>
+              <ion-label>Historial</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
           <ion-menu-toggle auto-hide="false">
           <ion-item routerDirection="root" routerLinkActive="selected" (click)="logout()">
             <ion-icon class="ion-padding-end" name="log-out-outline"></ion-icon>

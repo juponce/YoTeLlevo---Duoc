@@ -39,7 +39,6 @@ export class PerfilPage implements OnInit {
     const path = 'Users';
     const id = uid;
     this.firestore.getDoc<UserTable>(path, id).subscribe( res => {
-      console.log('datos -> ', res);
       if (res) {
         this.name = res.name+' '+res.lastName;
         this.email = res.eMail;

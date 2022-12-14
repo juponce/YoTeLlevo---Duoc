@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from "leaflet";
-import { PostRuta, UserTable } from '../models/models';
+import { PostRuta, UserTable, ViajesPasajero } from '../models/models';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { Router } from '@angular/router';
@@ -20,7 +20,8 @@ export class GeolocalizacionPage {
   asiento:number = null
 
   postRuta: PostRuta[] = [];
-  nombre:string = null;
+  nombre: string = null;
+  userUid: string = null;
   now = new Date();
   
   postR: PostRuta = {
@@ -32,6 +33,18 @@ export class GeolocalizacionPage {
     autor: null,
     publicado: null,
   }
+
+  viajeP: ViajesPasajero = {
+    uid: null,
+    pasajeroUid: null,
+    inicio: null,
+    final: null,
+    precio: null,
+    conductor: null,
+    fecha: null,
+}
+
+
 
 
   constructor(
@@ -48,10 +61,8 @@ export class GeolocalizacionPage {
       console.log('No esta logeado')
       }
       });
+      };
 
-
-
-      }
         getUserData(uid: string) {
           const path = 'Users';
           const id = uid;
@@ -60,6 +71,7 @@ export class GeolocalizacionPage {
             if(res){
               this.type = res.type;
               this.nombre = res.name+' '+res.lastName;
+              this.userUid = res.uid;
             }
           });
         };
@@ -91,8 +103,8 @@ export class GeolocalizacionPage {
           console.log('Publicado correctamente')
           
           this.router.navigate(['/geolocalizacion'])
-          })
-        }
+          });
+        };
       }
 
       getPost(){
@@ -103,11 +115,27 @@ export class GeolocalizacionPage {
       }
 
       async descontarAsiento(viaje: PostRuta) {
-        const path = 'PostRuta'
-        this.interaction.showLoading('Asignando asiento...')
-        await this.firestore.updatePost(path, viaje.uid).update({asientos: viaje.asientos -1 }).then( () => {
-          this.interaction.closeLoading();
+        const pathSet = 'ViajesPasajero';
+        const id = this.firestore.getId();
+        const pathGet = 'PostRuta';
+        this.viajeP.fecha = this.now.toLocaleDateString();
+        this.viajeP.uid = id;
+        this.viajeP.pasajeroUid = this.userUid;
+        this.firestore.getDoc<PostRuta>(pathGet, viaje.uid).subscribe( res => {
+          console.log('datos -> ', res);
+          if (res) {
+            this.viajeP.inicio = res.inicio;
+            this.viajeP.final = res.final;
+            this.viajeP.conductor = res.autor;
+            this.viajeP.precio = res.precio;
+          }
+        });
+        this.interaction.showLoading('Asignando asiento...');
+        await this.firestore.updatePost(pathGet, viaje.uid).update({asientos: viaje.asientos -1 }).then( () => {
           this.interaction.presentToast('Asiento asignado');
         });
+        await this.firestore.createDoc(this.viajeP, pathSet, id).then( () => {
+          this.interaction.closeLoading();
+          });
       };
   }

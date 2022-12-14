@@ -63,7 +63,7 @@
             Punto de partida: {{ x.inicio }} <br>
             Punto de llegada: {{ x.final }} <br>
             Numero de asientos disponibles: {{ x.asientos }} <br>
-            Precio: {{ x.precio }}$
+            Precio: ${{ x.precio }}
           </ion-card-content>
           <ion-grid fixed *ngIf="x.asientos == 0">
             <ion-button type="submit" [disabled]="true">No hay asientos disponibles</ion-button>
